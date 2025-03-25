@@ -33,7 +33,7 @@ class CategoriesScreen extends StatelessWidget {
         childAspectRatio: 1.1,
         children: [
           _buildCategoryItem(
-            icon: 'assets/icons/electronics.svg',
+            icon: 'assets/icons/electronics.jpeg',
             label: 'Electronics',
           ),
           _buildCategoryItem(
