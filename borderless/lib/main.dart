@@ -5,11 +5,21 @@ import 'package:google_fonts/google_fonts.dart';
 import 'themes/app_colors.dart';
 import 'presentation/screens/onboarding/splash_screen.dart';
 import 'package:borderless/presentation/bloc/wishlist/wishlist_bloc.dart';
-
-// Import BLoC dependencies
-import 'package:borderless/presentation/bloc/wishlist/wishlist_bloc.dart';
+import 'package:provider/provider.dart';
+import 'package:borderless/providers/navigation_provider.dart';
 
 void main() {
+  void main() {
+    runApp(
+      MultiProvider(
+        providers: [
+          ChangeNotifierProvider(create: (context) => NavigationProvider()),
+        ],
+        child: const MyApp(),
+      ),
+    );
+  }
+
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setSystemUIOverlayStyle(
     const SystemUiOverlayStyle(

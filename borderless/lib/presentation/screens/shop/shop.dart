@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:borderless/presentation/screens/shop/product_screen.dart';
-import 'package:borderless/presentation/screens/shop/cart.dart';
+import 'package:borderless/presentation/screens/home/my_cart.dart';
 import 'package:borderless/presentation/screens/shop/orders.dart';
-import 'package:borderless/presentation/screens/shop/wishlist_screen.dart';
+import 'package:borderless/presentation/screens/home/wishlist_screen.dart';
 
 class ShopScreen extends StatelessWidget {
   const ShopScreen({super.key});

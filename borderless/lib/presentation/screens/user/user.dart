@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:borderless/presentation/screens/user/account_screen.dart';
 import 'package:borderless/presentation/screens/user/address_book_screen.dart';
-import 'package:borderless/presentation/screens/user/profile_screen.dart';
+import 'package:borderless/presentation/screens/home/profile_screen.dart';
 
 class UserScreen extends StatelessWidget {
   const UserScreen({super.key});
