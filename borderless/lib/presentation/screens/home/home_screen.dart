@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../../themes/app_colors.dart';
 import 'categories_screen.dart';
-import 'wishlist_screen.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -426,13 +425,19 @@ class _HomeScreenState extends State<HomeScreen> {
                     width: 32,
                     height: 32,
                     decoration: BoxDecoration(
-                      color: Colors.black.withOpacity(0.6),
+                      color: Colors.white,
                       shape: BoxShape.circle,
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.1),
+                          blurRadius: 8,
+                        ),
+                      ],
                     ),
                     child: Icon(
                       Icons.favorite_border,
-                      color: Colors.white,
-                      size: 16,
+                      size: 20,
+                      color: Colors.grey[600],
                     ),
                   ),
                 ),
@@ -440,41 +445,42 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(12),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                Container(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 8,
+                    vertical: 4,
+                  ),
+                  decoration: BoxDecoration(
+                    color: Colors.grey[100],
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: Text(
+                    'A$colors Colors',
+                    style: GoogleFonts.inter(
+                      fontSize: 12,
+                      color: Colors.grey[700],
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 8),
                 Text(
                   title,
                   style: GoogleFonts.inter(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w600,
+                    fontWeight: FontWeight.w500,
                   ),
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                 ),
                 const SizedBox(height: 4),
                 Text(
-                  '\$$price',
+                  '\$${price.toStringAsFixed(2)}',
                   style: GoogleFonts.inter(
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
-                    color: Colors.black,
-                  ),
-                ),
-                const SizedBox(height: 4),
-                Row(
-                  children: List.generate(
-                    colors,
-                        (index) => Container(
-                      width: 12,
-                      height: 12,
-                      margin: const EdgeInsets.only(right: 4),
-                      decoration: BoxDecoration(
-                        color: Colors.primaries[index % Colors.primaries.length],
-                        shape: BoxShape.circle,
-                      ),
-                    ),
                   ),
                 ),
               ],

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'electronics_subcategories.dart'; // Import new screen
 
 class CategoriesScreen extends StatelessWidget {
   const CategoriesScreen({super.key});
@@ -35,77 +36,28 @@ class CategoriesScreen extends StatelessWidget {
           _buildCategoryItem(
             icon: 'assets/icons/electronics.jpeg',
             label: 'Electronics',
+            context: context,
+            navigateTo: const ElectronicsSubcategoriesScreen(), // Pass new screen
           ),
           _buildCategoryItem(
             icon: 'assets/icons/fashion.svg',
             label: 'Fashion',
+            context: context,
           ),
           _buildCategoryItem(
             icon: 'assets/icons/furniture.svg',
             label: 'Furniture',
+            context: context,
           ),
           _buildCategoryItem(
             icon: 'assets/icons/industrial.svg',
             label: 'Industrial',
+            context: context,
           ),
           _buildCategoryItem(
             icon: 'assets/icons/home_decor.svg',
             label: 'Home Decor',
-          ),
-          _buildCategoryItem(
-            icon: 'assets/icons/electronics_2.svg',
-            label: 'Electronics',
-          ),
-          _buildCategoryItem(
-            icon: 'assets/icons/health.svg',
-            label: 'Health',
-          ),
-          _buildCategoryItem(
-            icon: 'assets/icons/construction.svg',
-            label: 'Construction & Real State',
-          ),
-          _buildCategoryItem(
-            icon: 'assets/icons/fabrication.svg',
-            label: 'Fabrication Service',
-          ),
-          _buildCategoryItem(
-            icon: 'assets/icons/electrical.svg',
-            label: 'Electrical Equipment',
-          ),
-        ],
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: 1,
-        type: BottomNavigationBarType.fixed,
-        selectedItemColor: const Color(0xFF6C63FF),
-        unselectedItemColor: Colors.grey[400],
-        backgroundColor: Colors.white,
-        elevation: 0,
-        showSelectedLabels: true,
-        showUnselectedLabels: true,
-        selectedLabelStyle: GoogleFonts.inter(fontSize: 12),
-        unselectedLabelStyle: GoogleFonts.inter(fontSize: 12),
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home_outlined),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.grid_view),
-            activeIcon: Icon(Icons.grid_view_sharp),
-            label: 'Categories',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.shopping_cart_outlined),
-            label: 'My Cart',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.favorite_border),
-            label: 'Wishlist',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person_outline),
-            label: 'Profile',
+            context: context,
           ),
         ],
       ),
@@ -115,51 +67,64 @@ class CategoriesScreen extends StatelessWidget {
   Widget _buildCategoryItem({
     required String icon,
     required String label,
+    required BuildContext context,
+    Widget? navigateTo, // Make navigation optional
   }) {
-    return Container(
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(16),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.05),
-            blurRadius: 10,
-            offset: const Offset(0, 2),
-          ),
-        ],
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Container(
-            width: 64,
-            height: 64,
-            padding: const EdgeInsets.all(16),
-            decoration: BoxDecoration(
-              color: Colors.grey[50],
-              borderRadius: BorderRadius.circular(16),
+    return GestureDetector(
+      onTap: () {
+        if (navigateTo != null) {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => navigateTo),
+          );
+        }
+      },
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(16),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.05),
+              blurRadius: 10,
+              offset: const Offset(0, 2),
             ),
-            child: SvgPicture.asset(
-              icon,
-              colorFilter: const ColorFilter.mode(
-                Colors.black87,
-                BlendMode.srcIn,
+          ],
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+              width: 64,
+              height: 64,
+              padding: const EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                color: Colors.grey[50],
+                borderRadius: BorderRadius.circular(16),
+              ),
+              child: SvgPicture.asset(
+                icon,
+                colorFilter: const ColorFilter.mode(
+                  Colors.black87,
+                  BlendMode.srcIn,
+                ),
               ),
             ),
-          ),
-          const SizedBox(height: 12),
-          Text(
-            label,
-            style: GoogleFonts.inter(
-              fontSize: 14,
-              fontWeight: FontWeight.w500,
+            const SizedBox(height: 12),
+            Text(
+              label,
+              style: GoogleFonts.inter(
+                fontSize: 14,
+                fontWeight: FontWeight.w500,
+              ),
+              textAlign: TextAlign.center,
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
             ),
-            textAlign: TextAlign.center,
-            maxLines: 2,
-            overflow: TextOverflow.ellipsis,
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
 }
+
